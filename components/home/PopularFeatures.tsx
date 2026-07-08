@@ -55,9 +55,9 @@ export function PopularFeatures({ onSearch }: PopularFeaturesProps) {
     loadMoreRef: recommendLoadMoreRef,
   } = usePersonalizedRecommendations(false);
 
-  const [hasSelectedRegularTag, setHasSelectedRegularTag] = useState(false);
+  const [isRecommendSelected, setIsRecommendSelected] = useState(false);
 
-  const effectiveRecommendSelected = hasHistory && !hasSelectedRegularTag;
+  const effectiveRecommendSelected = hasHistory && isRecommendSelected;
 
   const {
     movies,
@@ -78,7 +78,7 @@ export function PopularFeatures({ onSearch }: PopularFeaturesProps) {
   };
 
   const handleRecommendSelect = () => {
-    setHasSelectedRegularTag(false);
+    setIsRecommendSelected(true);
   };
 
   const handleRegularTagSelect = (tagId: string) => {
@@ -86,7 +86,7 @@ export function PopularFeatures({ onSearch }: PopularFeaturesProps) {
       window.location.href = '/premium';
       return;
     }
-    setHasSelectedRegularTag(true);
+    setIsRecommendSelected(false);
     setSelectedTag(tagId);
   };
 
